@@ -1,13 +1,13 @@
 {
-  "name": "simple-mcp-server",
+  "name": "simple-plugin",
   "version": "1.0.0",
-  "description": "A minimal MCP server exposing three utility tools: add (arithmetic), get_datetime (current UTC timestamp), and echo (round-trip string verification).",
+  "description": "A minimal plugin combining the Simple MCP Server and Simple Skill: exposes three utility tools (add, get_datetime, echo) with full agent usage guidance.",
   "author": {
     "name": "Your Name",
-    "url": "https://github.com/your-org/simple-mcp-server"
+    "url": "https://github.com/your-org/simple-plugin"
   },
-  "homepage": "https://github.com/your-org/simple-mcp-server",
-  "repository": "https://github.com/your-org/simple-mcp-server",
+  "homepage": "https://github.com/your-org/simple-plugin",
+  "repository": "https://github.com/your-org/simple-plugin",
   "license": "MIT",
   "keywords": [
     "mcp",
