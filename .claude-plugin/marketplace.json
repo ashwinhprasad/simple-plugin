@@ -1,0 +1,46 @@
+{
+  "name": "simple-mcp-server",
+  "owner": {
+    "name": "Your Name",
+    "email": "you@example.com"
+  },
+  "metadata": {
+    "description": "A minimal MCP server exposing three utility tools for AI agents: add two numbers, retrieve the current UTC datetime, and echo a string back unchanged.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "simple-mcp-server",
+      "source": "./",
+      "description": "Three lightweight MCP tools for agent use: add (sum two numbers), get_datetime (current ISO 8601 UTC timestamp), and echo (round-trip string verification). Ideal as a starter server, connectivity health-check, or reference implementation.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Your Name"
+      },
+      "homepage": "https://github.com/your-org/simple-mcp-server",
+      "repository": "https://github.com/your-org/simple-mcp-server",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "mcp-server",
+        "arithmetic",
+        "datetime",
+        "echo",
+        "utility",
+        "ai-agent",
+        "model-context-protocol",
+        "starter",
+        "reference"
+      ],
+      "category": "utilities",
+      "tags": [
+        "mcp",
+        "utility",
+        "arithmetic",
+        "datetime",
+        "echo",
+        "reference-implementation"
+      ]
+    }
+  ]
+}

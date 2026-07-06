@@ -1,0 +1,24 @@
+{
+  "name": "simple-mcp-server",
+  "version": "1.0.0",
+  "description": "A minimal MCP server exposing three utility tools: add (arithmetic), get_datetime (current UTC timestamp), and echo (round-trip string verification).",
+  "author": {
+    "name": "Your Name",
+    "url": "https://github.com/your-org/simple-mcp-server"
+  },
+  "homepage": "https://github.com/your-org/simple-mcp-server",
+  "repository": "https://github.com/your-org/simple-mcp-server",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "arithmetic",
+    "datetime",
+    "echo",
+    "utility",
+    "ai-agent",
+    "model-context-protocol"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json"
+}

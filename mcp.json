@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "simple-mcp-server": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@ashwinhprasad10/simple-mcp-server-ashwin"]
+    }
+  }
+}
