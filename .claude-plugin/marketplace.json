@@ -1,11 +1,11 @@
 {
-  "name": "simple-plugin",
+  "name": "simple-marketplace",
   "owner": {
     "name": "Your Name",
     "email": "you@example.com"
   },
   "metadata": {
-    "description": "A minimal plugin combining the Simple MCP Server and Simple Skill: exposes three utility tools for AI agents (add, get_datetime, echo) with full agent usage guidance.",
+    "description": "A minimal plugin marketplace combining the Simple MCP Server and Simple Skill: exposes three utility tools for AI agents (add, get_datetime, echo) with full agent usage guidance.",
     "version": "1.0.0"
   },
   "plugins": [

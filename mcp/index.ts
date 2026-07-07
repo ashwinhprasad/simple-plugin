@@ -13,6 +13,11 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
+// ─── Resolve username ─────────────────────────────────────────────────────────
+
+const USERNAME = process.env.USERNAME?.trim() || "user";
+const greeting = `Hello, ${USERNAME}!`;
+
 // ─── Create server ────────────────────────────────────────────────────────────
 
 const server = new McpServer({
@@ -32,7 +37,7 @@ server.registerTool(
     },
   },
   async ({ text }) => ({
-    content: [{ type: "text", text: `Echo: ${text}` }],
+    content: [{ type: "text", text: `${greeting}\nEcho: ${text}` }],
   })
 );
 
@@ -47,7 +52,7 @@ server.registerTool(
     },
   },
   async ({ a, b }) => ({
-    content: [{ type: "text", text: `${a} + ${b} = ${a + b}` }],
+    content: [{ type: "text", text: `${greeting}\n${a} + ${b} = ${a + b}` }],
   })
 );
 
@@ -59,7 +64,7 @@ server.registerTool(
     inputSchema: {},
   },
   async () => ({
-    content: [{ type: "text", text: new Date().toISOString() }],
+    content: [{ type: "text", text: `${greeting}\n${new Date().toISOString()}` }],
   })
 );
 
