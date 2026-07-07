@@ -23,6 +23,8 @@
   "mcpServers": "./mcp.json",
   "userConfig": {
     "username": {
+      "type": "string",
+      "title": "Username",
       "description": "The name of the user using the simple server.",
       "sensitive": false
     }
