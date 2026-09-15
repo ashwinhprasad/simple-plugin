@@ -1,0 +1,32 @@
+{
+  "name": "simple-plugin",
+  "version": "1.0.0",
+  "description": "A minimal plugin combining the Simple MCP Server and Simple Skill: exposes three utility tools (add, get_datetime, echo) with full agent usage guidance.",
+  "author": {
+    "name": "Your Name",
+    "url": "https://github.com/your-org/simple-plugin"
+  },
+  "homepage": "https://github.com/your-org/simple-plugin",
+  "repository": "https://github.com/your-org/simple-plugin",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "arithmetic",
+    "datetime",
+    "echo",
+    "utility",
+    "ai-agent",
+    "model-context-protocol"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json",
+  "userConfig": {
+    "username": {
+      "type": "string",
+      "title": "Username",
+      "description": "The name of the user using the simple server.",
+      "sensitive": false
+    }
+  }
+}
