@@ -1,45 +1,38 @@
 {
-  "name": "simple-marketplace",
+  "name": "zoho-analytics-marketplace",
   "owner": {
-    "name": "Your Name",
-    "email": "you@example.com"
+    "name": "Zoho Corporation",
+    "email": "support@zoho.com"
   },
   "metadata": {
-    "description": "A minimal plugin marketplace combining the Simple MCP Server and Simple Skill: exposes three utility tools for AI agents (add, get_datetime, echo) with full agent usage guidance.",
     "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "simple-plugin",
+      "name": "zoho-analytics-plugin",
       "source": "./",
-      "description": "Simple Plugin bundles the Simple MCP Server and Simple Skill: three lightweight tools (add, get_datetime, echo) with full agent usage guidance. Ideal as a starter plugin, connectivity health-check, or reference implementation.",
+      "description": "A collection of zoho analytics skills and a MCP server that provides seamless analytics capabilities to agents",
       "version": "1.0.0",
       "author": {
-        "name": "Your Name"
+        "name": "Zoho Corporation"
       },
-      "homepage": "https://github.com/your-org/simple-plugin",
-      "repository": "https://github.com/your-org/simple-plugin",
+      "homepage": "https://docs.example.com/plugin",
+      "repository": "https://github.com/zoho/analytics-mcp-server/",
       "license": "MIT",
       "keywords": [
-        "mcp",
-        "mcp-server",
-        "arithmetic",
-        "datetime",
-        "echo",
-        "utility",
-        "ai-agent",
-        "model-context-protocol",
-        "starter",
-        "reference"
+        "zoho-analytics",
+        "analytics",
+        "data-visualization",
+        "BI",
+        "zoho"
       ],
-      "category": "utilities",
+      "category": "integrations",
       "tags": [
-        "mcp",
-        "utility",
-        "arithmetic",
-        "datetime",
-        "echo",
-        "reference-implementation"
+        "zoho",
+        "analytics",
+        "data-visualization",
+        "BI",
+        "mcp"
       ]
     }
   ]
