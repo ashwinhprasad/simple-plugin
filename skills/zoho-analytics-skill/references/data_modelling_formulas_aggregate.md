@@ -12,6 +12,7 @@ Aggregate formulas are reusable named expressions that return a **single aggrega
   a) Must use fully qualified names: `"TableName"."ColumnName"`
   b) Must be created on the **childmost table** in the lookup chain (the table furthest from the parent in the relationship hierarchy)
   c) Can traverse multiple levels of lookups (e.g., OrderItems → Orders → Customers)
+  d) Must contain columns from multiple tables in the expression
 
 
 ## 1. List Aggregate Formulas
