@@ -6,13 +6,32 @@ Aggregate formulas are reusable named expressions that return a **single aggrega
 - Enclose column/table names in **double quotes**: `"Revenue"`, `"Orders"."Amount"`
 - Enclose literal string values in **single quotes**: `'Active'`
 - Expressions are **MySQL-compatible**
-- The expression **must always return a single aggregate value** — do not write a row-level expression here
+- The expression **must always evaluate to a single value** (a single row / scalar result)
+- The expression **may contain complex nested MySQL-compatible sub-expressions** (e.g., `IF`, `CASE`, `COALESCE`, `NULLIF`, arithmetic, string/date functions) **as long as the final result is a single value**
 - **Single-table formulas**: Reference columns from one table only (e.g., `SUM("Amount")`)
 - **Multi-table aggregate formulas**: Reference columns from **2+ different tables** connected via lookup relationships (e.g., `SUM("Orders"."Amount" * "Customers"."Factor")`). These formulas:
   a) Must use fully qualified names: `"TableName"."ColumnName"`
   b) Must be created on the **childmost table** in the lookup chain (the table furthest from the parent in the relationship hierarchy)
   c) Can traverse multiple levels of lookups (e.g., OrderItems → Orders → Customers)
   d) Must contain columns from multiple tables in the expression
+
+### What “single aggregated value” means (and what it doesn't)
+
+Aggregate formulas are not limited to *only* simple functions like `SUM()` / `COUNT()`.
+
+They can include **nested expressions inside the aggregate**, or can combine multiple aggregates into one scalar result.
+
+Valid patterns (examples):
+- Conditional aggregation: `SUM(IF("Status"='Closed', "Revenue", 0))`
+- Ratio / KPI: `SUM("Revenue") / NULLIF(COUNT(DISTINCT "CustomerID"), 0)`
+- Weighted average: `SUM("Score" * "Weight") / NULLIF(SUM("Weight"), 0)`
+- Nested functions: `ROUND(SUM(COALESCE("Amount",0)), 2)`
+
+Not valid patterns:
+- Row-level expressions without an aggregate wrapper (e.g., `"Amount" * 0.18`)
+- Expressions that produce multiple rows (e.g., a subquery that returns multiple rows/columns)
+
+> If you’re unsure whether the expression is “aggregate enough”, check whether it would still make sense if evaluated for the entire table and returns a single scalar.
 
 
 ## 1. List Aggregate Formulas
@@ -91,7 +110,9 @@ Arguments:
 - `workspaceId` (required): The ID of the workspace.
 - `tableId` (required): The ID of the table on which to create the aggregate formula.
 - `formulaName` (required): The display name of the new aggregate formula.
-- `expression` (required): The SQL aggregate expression. Must return a single aggregated value.
+- `expression` (required): The SQL expression that evaluates to a single value.
+  - Must be MySQL-compatible.
+  - Can include nested expressions and multiple aggregate functions.
 - `orgId` (optional): Organization ID. Defaults to the configured `ORGID`.
 
 ```
@@ -171,6 +192,36 @@ execute_analytics_tool(
 ```
 
 > **Understanding childmost table**: In a lookup chain like `Customers → Orders → OrderItems`, the childmost table is `OrderItems` because it's the target (child side) of the relationship. Aggregations roll up data from the child perspective through the entire lookup hierarchy, giving the child access to all parent table columns.
+
+### More expression examples (nested / complex)
+
+Example — KPI ratio (Average revenue per distinct customer) with divide-by-zero protection:
+
+```
+execute_analytics_tool(
+    "addAggregateFormula",
+    {
+        "workspaceId": "123456789",
+        "tableId": "987654321",
+        "formulaName": "Revenue per Customer",
+        "expression": "SUM(\"Revenue\") / NULLIF(COUNT(DISTINCT \"CustomerID\"), 0)"
+    }
+)
+```
+
+Example — nested expression inside SUM (clamp negatives to 0, then round total):
+
+```
+execute_analytics_tool(
+    "addAggregateFormula",
+    {
+        "workspaceId": "123456789",
+        "tableId": "987654321",
+        "formulaName": "Rounded Positive Revenue",
+        "expression": "ROUND(SUM(IF(\"Revenue\" < 0, 0, COALESCE(\"Revenue\", 0))), 2)"
+    }
+)
+```
 
 Returns: A success message with the created formula's ID.
 
