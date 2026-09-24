@@ -9,9 +9,9 @@ Aggregate formulas are reusable named expressions that return a **single aggrega
 - The expression **must always return a single aggregate value** — do not write a row-level expression here
 - **Single-table formulas**: Reference columns from one table only (e.g., `SUM("Amount")`)
 - **Multi-table aggregate formulas**: Reference columns from **2+ different tables** connected via lookup relationships (e.g., `SUM("Orders"."Amount" * "Customers"."Factor")`). These formulas:
-  - Must use fully qualified names: `"TableName"."ColumnName"`
-  - Must be created on the **childmost table** in the lookup chain (the table furthest from the parent in the relationship hierarchy)
-  - Can traverse multiple levels of lookups (e.g., OrderItems → Orders → Customers)
+  a) Must use fully qualified names: `"TableName"."ColumnName"`
+  b) Must be created on the **childmost table** in the lookup chain (the table furthest from the parent in the relationship hierarchy)
+  c) Can traverse multiple levels of lookups (e.g., OrderItems → Orders → Customers)
 
 
 ## 1. List Aggregate Formulas
